@@ -21,6 +21,16 @@ void insertAtHead(Node* &head, int data){
     head = newnode;
 }
 
+void insertAtTail(Node* &tail,int data){
+
+    // created a new node
+    Node* newnode = new Node(data);
+    
+    tail->next = newnode;
+    tail = newnode;
+    
+}
+
 void print(Node* &head){
 
     Node* temp = head;
@@ -39,9 +49,12 @@ int main(){
     Node* node1 = new Node(5);
 
     Node* head = node1;
+    Node* tail = node1;
 
     print(head);
-    insertAtHead(head,7);
+    insertAtTail(tail,7);
+    print(head);
+    insertAtTail(tail,9);
     print(head);
     // cout<<node1->data;
 
