@@ -21,18 +21,6 @@ void insertAtHead(Node* &head, int data){
     head = newnode;
 }
 
-void print(Node* &head){
-
-    Node* temp = head;
-
-    while (temp != nullptr)
-    {
-        cout<<temp->data<<" ";
-        temp = temp->next;
-    }
-    cout<<endl;
-    
-}
 
 
 int main(){
