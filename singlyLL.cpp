@@ -75,7 +75,8 @@ void insertAtPosition(Node *&head, Node *&tail, int data, int position)
     temp->next = newnode;
 }
 
-void deleteNode(Node *&head, int position){
+void deleteNodeP(Node *&head, int position)
+{
 
     // list is empty
     if (head == nullptr || position < 1)
@@ -112,6 +113,40 @@ void deleteNode(Node *&head, int position){
     delete temp;
 }
 
+void deleteNodeV(Node *&head, int value)
+{
+
+    // list is empty
+    if (head == nullptr)
+    {
+        return;
+    }
+
+    Node *temp = head;
+    // handling head position
+    if (temp->data == value && temp == head)
+    {
+        head = temp->next;
+        temp = nullptr;
+        delete temp;
+        return;
+    }
+
+    
+    Node *previous = nullptr;
+    while (temp->next != nullptr)
+    {
+        previous = temp;
+        if(temp->data == value){
+            previous->next = temp->next;
+            temp = nullptr;
+            delete temp;
+            return;
+        }
+        temp = temp->next;
+    }
+}
+
 void print(Node *&head)
 {
 
@@ -140,6 +175,9 @@ int main()
     insertAtPosition(head, tail, 8, 2);
     print(head);
 
-    deleteNode(head, 0);
+    deleteNodeP(head, 1);
+    print(head);
+
+    deleteNodeV(head,5);
     print(head);
 }
