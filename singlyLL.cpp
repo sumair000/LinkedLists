@@ -75,8 +75,7 @@ void insertAtPosition(Node *&head, Node *&tail, int data, int position)
     temp->next = newnode;
 }
 
-void deleteNode(Node *&head, int position)
-{
+void deleteNode(Node *&head, int position){
 
     // list is empty
     if (head == nullptr || position < 1)
