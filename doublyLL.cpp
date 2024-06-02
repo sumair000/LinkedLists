@@ -14,10 +14,25 @@ class Node{
     }
 };
 
+void insertAtHead(Node* &head, char data){
+    // list is empty
+    if(head == nullptr){
+        return;
+    }
+    // created a new Node
+    Node* newNode = new Node(data);
+    newNode->next = head;
+    head->previous = newNode;
+    head = newNode;
+
+
+
+}
+
 void print(Node* head){
     Node* temp = head;
     while(temp != nullptr){
-        cout<<temp->data<<"";
+        cout<<temp->data<<" ";
         temp = temp->next;
 
     }
@@ -38,6 +53,8 @@ int main(){
     Node* newNode = new Node('A');
 
     Node* head = newNode;
+    print(head);
+    insertAtHead(head, 'B');
 
     print(head);
 }
