@@ -132,21 +132,27 @@ void deleteNodeV(Node *&head, int value)
         return;
     }
 
-    
     Node *previous = nullptr;
-    while (temp->next != nullptr)
+    while ( temp->next != nullptr)
     {
-        previous = temp;
-        if(temp->data == value){
-            previous->next = temp->next;
-            temp = nullptr;
-            delete temp;
-            return;
+        if (temp->data == value)
+        {
+            break;
         }
+        
+        previous = temp;
         temp = temp->next;
     }
+    //value not found
+    if (temp->next == nullptr)
+    {
+        return;
+    }
+    
+    previous->next = temp->next;
+    temp = nullptr;
+    delete temp;
 }
-
 void print(Node *&head)
 {
 
@@ -175,9 +181,9 @@ int main()
     insertAtPosition(head, tail, 8, 2);
     print(head);
 
-    deleteNodeP(head, 1);
-    print(head);
+    // deleteNodeP(head, 1);
+    // print(head);
 
-    deleteNodeV(head,5);
+    deleteNodeV(head, 10);
     print(head);
 }
