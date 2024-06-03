@@ -37,6 +37,45 @@ void insertAtTail(Node* &tail, char data){
 
 }
 
+void insertAtPosition(Node* &head, Node* &tail, int position, char data){
+
+    // if the given is position is 1.
+    if (position == 1)
+    {
+        insertAtHead(head, data);
+        return;
+    }
+
+    Node *temp = head;
+    int count = 1;
+    while (count < position - 1)
+    {
+        temp = temp->next;
+        count++;
+    }
+    if (temp == nullptr)
+    {
+        return;
+    }
+    
+     // if temp-> next is null it means we are at last position
+    if (temp->next == nullptr)
+    {
+        insertAtTail(tail, data);
+        return;
+    }
+
+    // create a new node which have to insert
+    Node *newNode = new Node(data);
+
+    newNode->next = temp->next;
+    temp->next->previous = newNode;
+    temp->next = newNode;
+    newNode->previous = temp;
+
+
+}
+
 void print(Node* head){
     Node* temp = head;
     while(temp != nullptr){
@@ -67,6 +106,12 @@ int main(){
     insertAtHead(head, 'B');
     print(head);
 
+
     insertAtTail(tail,'C');
     print(head);
+
+    insertAtPosition(head,tail,4,'D');
+    print(head);
+
+
 }
