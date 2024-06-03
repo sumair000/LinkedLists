@@ -60,6 +60,12 @@ void insertAtPosition(Node *&head, Node *&tail, int data, int position)
         temp = temp->next;
         count++;
     }
+    // position not existed
+    if (temp == nullptr)
+    {
+        return;
+    }
+    
 
     // if temp-> next is null it means we are at last position
     if (temp->next == nullptr)
@@ -178,12 +184,12 @@ int main()
     print(head);
     insertAtTail(tail, 9);
     print(head);
-    insertAtPosition(head, tail, 8, 2);
+    insertAtPosition(head, tail, 8, 4);
     print(head);
 
     // deleteNodeP(head, 1);
     // print(head);
 
-    deleteNodeV(head, 10);
-    print(head);
+    //deleteNodeV(head, 10);
+    //print(head);
 }
