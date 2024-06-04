@@ -14,26 +14,43 @@ class Node{
     }
 };
 
-void insertAtHead(Node* &head, char data){
+void insertAtHead(Node* &head,Node* &tail, char data){
     // list is empty
     if(head == nullptr){
-        return;
+        Node* newNode = new Node(data);
+        head = newNode;
+        tail = newNode;
     }
-    // created a new Node
-    Node* newNode = new Node(data);
-    newNode->next = head;
-    head->previous = newNode;
-    head = newNode;
+    else{
+
+        Node* newNode = new Node(data);
+
+        newNode->next = head;
+        head->previous = newNode;
+        head = newNode;
+    }
+    
+    
 }
 
-void insertAtTail(Node* &tail, char data){
+void insertAtTail(Node* &tail,Node* &head, char data){
 
-    // create a new node
-    Node* newNode = new Node(data);
+    if (tail == nullptr)
+    {
+        Node* newNode = new Node(data);
+        tail = newNode;
+        head = newNode;
+    }
+    
+    else{
 
-    tail->next = newNode;
-    newNode->previous = tail;
-    tail = newNode;
+        Node* newNode = new Node(data);
+
+        tail->next = newNode;
+        newNode->previous = tail;
+        tail = newNode;
+    }
+    
 
 }
 
@@ -42,13 +59,13 @@ void insertAtPosition(Node* &head, Node* &tail, int position, char data){
     // if the given is position is 1.
     if (position == 1)
     {
-        insertAtHead(head, data);
+        insertAtHead(head,tail, data);
         return;
     }
 
     Node *temp = head;
     int count = 1;
-    while (count < position - 1)
+    while (count < position - 1 && temp != nullptr)
     {
         temp = temp->next;
         count++;
@@ -61,7 +78,7 @@ void insertAtPosition(Node* &head, Node* &tail, int position, char data){
      // if temp-> next is null it means we are at last position
     if (temp->next == nullptr)
     {
-        insertAtTail(tail, data);
+        insertAtTail(tail,head, data);
         return;
     }
 
@@ -97,20 +114,20 @@ int  getLenth(Node* head){
 }
 
 int main(){
-    Node* newNode = new Node('A');
+    //Node* newNode = new Node('A');
 
-    Node* head = newNode;
-    Node* tail = newNode;
+    Node* head = nullptr;
+    Node* tail = nullptr;
     print(head);
 
-    insertAtHead(head, 'B');
+    insertAtHead(head,tail, 'B');
     print(head);
 
 
-    insertAtTail(tail,'C');
+    insertAtTail(tail,head,'C');
     print(head);
 
-    insertAtPosition(head,tail,4,'D');
+    insertAtPosition(head,tail,7,'D');
     print(head);
 
 
