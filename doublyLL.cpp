@@ -12,6 +12,13 @@ class Node{
         this->next = nullptr;
         this->previous = nullptr;
     }
+
+    ~Node(){
+        while(this->next != nullptr){
+            delete next;
+            this->next = nullptr;
+        }
+    }
 };
 
 void insertAtHead(Node* &head,Node* &tail, char data){
@@ -93,6 +100,43 @@ void insertAtPosition(Node* &head, Node* &tail, int position, char data){
 
 }
 
+void deleteNodeP(Node* &head, int position){
+    // list is empty
+    if (head == nullptr || position < 1)
+    {
+        return;
+    }
+    
+    Node* temp = head;
+     if (position == 1)
+    {
+        head = temp->next;
+        temp->next->previous = nullptr;
+        temp->next = nullptr;
+        delete temp;
+        return;
+    }
+
+    Node* pre = nullptr;
+    int count = 1;
+    while(temp != nullptr && count < position){
+        pre = temp;
+        temp = temp->next;
+        count++;
+
+    }
+    if(temp == nullptr){
+        return;
+    }
+
+    temp->previous = nullptr;
+    pre->next = temp->next;
+    temp->next = nullptr;
+
+    delete temp;
+    
+}
+
 void print(Node* head){
     Node* temp = head;
     while(temp != nullptr){
@@ -114,10 +158,10 @@ int  getLenth(Node* head){
 }
 
 int main(){
-    //Node* newNode = new Node('A');
+    Node* newNode = new Node('A');
 
-    Node* head = nullptr;
-    Node* tail = nullptr;
+    Node* head = newNode;
+    Node* tail = newNode;
     print(head);
 
     insertAtHead(head,tail, 'B');
@@ -127,8 +171,10 @@ int main(){
     insertAtTail(tail,head,'C');
     print(head);
 
-    insertAtPosition(head,tail,7,'D');
+    insertAtPosition(head,tail,2,'D');
     print(head);
 
+    deleteNodeP(head,1);
+    print(head);
 
 }
