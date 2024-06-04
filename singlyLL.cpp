@@ -55,7 +55,7 @@ void insertAtPosition(Node *&head, Node *&tail, int data, int position)
 
     Node *temp = head;
     int count = 1;
-    while (count < position - 1)
+    while (count < position - 1 && temp!= nullptr)
     {
         temp = temp->next;
         count++;
@@ -184,7 +184,7 @@ int main()
     print(head);
     insertAtTail(tail, 9);
     print(head);
-    insertAtPosition(head, tail, 8, 4);
+    insertAtPosition(head, tail, 8, 7);
     print(head);
 
     // deleteNodeP(head, 1);
